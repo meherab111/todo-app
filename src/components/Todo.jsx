@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 
@@ -6,6 +6,8 @@ export const Todo = () => {
   const [userInput, setUserInput] = useState("");
 
   const [formData, setFormData] = useState([]);
+
+  const [dateTime, setDateTime] = useState("");
 
   const handleInputValue = (value) => {
     setUserInput(value);
@@ -26,10 +28,29 @@ export const Todo = () => {
     setUserInput("");
   };
 
+  console.log("hey");
+  
+
+  useEffect(() => {
+  
+    const intervalId = setInterval(() => {
+  const date = new Date();
+  const getDate = date.toLocaleDateString()
+  const getTime = date.toLocaleTimeString()
+    setDateTime(`${getDate}-${getTime}`)
+  }, 1000)
+
+  return () => clearInterval(intervalId)
+
+  }, [])
+
+
+
   return (
     <section className="todo-container">
       <header>
         <h1>Todo List</h1>
+         <h2 className="date-time">{dateTime}</h2>
       </header>
       <section className="form">
         <form onSubmit={handleFormSubmit}>
