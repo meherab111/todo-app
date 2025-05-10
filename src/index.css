@@ -160,7 +160,7 @@ span {
   overflow-wrap: anywhere;
 }
 
-li span {
+span {
   max-width: 20rem;
   color: #1c2833;
 }

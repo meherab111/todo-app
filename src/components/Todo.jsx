@@ -51,8 +51,8 @@ export const Todo = () => {
                     return(<li key={index}>
 
                         <span>{currElem}</span>
-                        <delete><FaCheckCircle /></delete>
-                        <delete><MdDeleteForever /></delete>
+                        <button className="check-btn"><FaCheckCircle /></button>
+                        <button className="delete-btn"><MdDeleteForever /></button>
                     </li>)
                 })
             }
