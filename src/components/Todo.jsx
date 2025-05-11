@@ -31,7 +31,7 @@ export const Todo = () => {
 
   useEffect(() => {
   
-    const intervalId = setInterval(() => {
+  const intervalId = setInterval(() => {
   const date = new Date();
   const getDate = date.toLocaleDateString()
   const getTime = date.toLocaleTimeString()
@@ -44,8 +44,15 @@ export const Todo = () => {
 
 
   const handleDeleteBtn = (value) => {
-    console.log(value);
     
+    const filteredValue = formData.filter((currElem) => currElem !== value)
+
+    setFormData(filteredValue);
+    
+  }
+
+  const handleClearBtn = () => {
+    setFormData([])
   }
 
   return (
@@ -88,6 +95,9 @@ export const Todo = () => {
             );
           })}
         </ul>
+      </section>
+      <section>
+        <button className="clear-btn" onClick={handleClearBtn}>Clear All</button>
       </section>
     </section>
   );

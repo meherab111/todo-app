@@ -197,6 +197,7 @@ li span {
 }
 
 .clear-btn {
+  cursor: pointer;
   background-color: #e74c3c;
   font-size: 1.6rem;
   padding: 1rem 2.2rem;
