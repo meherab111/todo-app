@@ -27,8 +27,6 @@ export const Todo = () => {
 
     setUserInput("");
   };
-
-  console.log("hey");
   
 
   useEffect(() => {
@@ -37,7 +35,7 @@ export const Todo = () => {
   const date = new Date();
   const getDate = date.toLocaleDateString()
   const getTime = date.toLocaleTimeString()
-    setDateTime(`${getDate}-${getTime}`)
+    setDateTime(`${getDate} - ${getTime}`)
   }, 1000)
 
   return () => clearInterval(intervalId)
@@ -45,6 +43,10 @@ export const Todo = () => {
   }, [])
 
 
+  const handleDeleteBtn = (value) => {
+    console.log(value);
+    
+  }
 
   return (
     <section className="todo-container">
@@ -79,7 +81,7 @@ export const Todo = () => {
                 <button className="check-btn">
                   <FaCheckCircle />
                 </button>
-                <button className="delete-btn">
+                <button className="delete-btn" onClick={() => handleDeleteBtn(currElem)}>
                   <MdDeleteForever />
                 </button>
               </li>
