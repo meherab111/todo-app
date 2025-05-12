@@ -188,11 +188,11 @@ li span {
   background-color: #e74c3c;
 }
 
-.checkList {
+.crossList {
   text-decoration: line-through;
 }
 
-.notCheckList {
+.notCrossList {
   text-decoration: none;
 }
 

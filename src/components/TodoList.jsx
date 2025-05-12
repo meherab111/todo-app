@@ -1,11 +1,11 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 
-export const TodoList = ({ key, currElem, onHandleDeleteBtn }) => {
+export const TodoList = ({ currElem, crossed, onHandleCrossBtn, onHandleDeleteBtn }) => {
   return (
-    <li key={key} className="todo-item">
-      <span>{currElem}</span>
-      <button className="check-btn">
+    <li className="todo-item">
+      <span className={crossed ? "crossList" : "notCrossList"}>{currElem}</span>
+      <button className="check-btn" onClick={() => onHandleCrossBtn(currElem)}>
         <FaCheckCircle />
       </button>
       <button

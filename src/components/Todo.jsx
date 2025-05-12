@@ -7,17 +7,40 @@ export const Todo = () => {
   const [formData, setFormData] = useState([]);
 
   const handleFormSubmit = (userInput) => {
-    if (!userInput) return;
+    const { id, content, crossed } = userInput;
 
-    if (formData.includes(userInput)) return;
+    if (!content) return;
 
-    setFormData((prev) => [...prev, userInput]);
+    const ifTodoContentMatch = formData.find(
+      (currElem) => currElem.content === content
+    );
+
+    if (ifTodoContentMatch) return;
+
+    setFormData((prev) => [
+      ...prev,
+      { id: id, content: content, crossed: crossed },
+    ]);
   };
 
   const handleDeleteBtn = (value) => {
-    const filteredValue = formData.filter((currElem) => currElem !== value);
+    const filteredValue = formData.filter(
+      (currElem) => currElem.content !== value
+    );
 
     setFormData(filteredValue);
+  };
+
+  const handleCrossBtn = (value) => {
+    const crossedValue = formData.map((currElem) => {
+      if (currElem.content === value) {
+        return { ...currElem, crossed: !currElem.crossed };
+      } else {
+        return currElem;
+      }
+    });
+
+    setFormData(crossedValue);
   };
 
   const handleClearBtn = () => {
@@ -35,13 +58,15 @@ export const Todo = () => {
       <TodoForm onAddTodo={handleFormSubmit} />
       <section className="myUnOrdList">
         <ul>
-          {formData.map((currElem, index) => {
+          {formData.map((currElem) => {
             return (
               // child components
               <TodoList
-                key={index}
-                currElem={currElem}
+                key={currElem.id}
+                currElem={currElem.content}
+                crossed={currElem.crossed}
                 onHandleDeleteBtn={handleDeleteBtn}
+                onHandleCrossBtn={handleCrossBtn}
               />
             );
           })}
