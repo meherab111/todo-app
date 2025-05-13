@@ -2,9 +2,12 @@ import { useState } from "react";
 import { TodoForm } from "./TodoForm";
 import { TodoList } from "./TodoList";
 import { DateTime } from "./DateTime";
+import { getLSTodoData, setLSTodoData } from "./TodoLocalStorage";
 
 export const Todo = () => {
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState(() => 
+    getLSTodoData()
+  );
 
   const handleFormSubmit = (userInput) => {
     const { id, content, crossed } = userInput;
@@ -42,6 +45,9 @@ export const Todo = () => {
 
     setFormData(crossedValue);
   };
+
+
+  setLSTodoData(formData)
 
   const handleClearBtn = () => {
     setFormData([]);
